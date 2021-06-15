@@ -126,8 +126,17 @@ endif()
 add_library(LibJuice::LibJuice ALIAS juice)
 add_library(LibJuice::LibJuiceStatic ALIAS juice-static)
 
+include(GenerateExportHeader)
+generate_export_header(juice)
+target_include_directories(juice PUBLIC ${CMAKE_BINARY_DIR})
+
+set_target_properties(juice PROPERTIES C_VISIBILITY_PRESET hidden)
+
 install(TARGETS juice LIBRARY DESTINATION lib)
-install(FILES ${LIBJUICE_HEADERS} DESTINATION include/juice)
+install(FILES
+	${LIBJUICE_HEADERS}
+	${PROJECT_BINARY_DIR}/juice_export.h
+	DESTINATION include/juice)
 
 if(NOT MSVC)
 	target_compile_options(juice PRIVATE -Wall -Wextra)

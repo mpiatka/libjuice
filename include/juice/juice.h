@@ -27,11 +27,7 @@ extern "C" {
 #include <stddef.h>
 #include <stdint.h>
 
-#ifdef _WIN32
-#define JUICE_EXPORT __declspec(dllexport)
-#else
-#define JUICE_EXPORT
-#endif
+#include "juice_export.h"
 
 #define JUICE_ERR_SUCCESS 0
 #define JUICE_ERR_INVALID -1   // invalid argument
