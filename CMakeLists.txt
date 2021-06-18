@@ -129,6 +129,7 @@ add_library(LibJuice::LibJuiceStatic ALIAS juice-static)
 include(GenerateExportHeader)
 generate_export_header(juice)
 target_include_directories(juice PUBLIC ${CMAKE_BINARY_DIR})
+target_compile_definitions(juice PUBLIC -DJUICE_HAS_EXPORT_HEADER)
 
 set_target_properties(juice PROPERTIES C_VISIBILITY_PRESET hidden)
 
